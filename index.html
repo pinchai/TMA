@@ -57,16 +57,18 @@
                 // Request user location when button is clicked or another event triggers it
                 tg.requestLocation({
                     success: (location) => {
-                        console.log("User location:", location);
+                        // console.log("User location:", location);
+                        Telegram.WebApp.showAlert(location)
                         // location.latitude and location.longitude will be available
                     },
                     error: (err) => {
-                        console.error("Failed to get location:", err);
+                        Telegram.WebApp.showAlert(err)
+                        // console.error("Failed to get location:", err);
                     },
                 });
             });
 
-            Telegram.WebApp.showAlert('Main Button was clicked')
+            // Telegram.WebApp.showAlert('Main Button was clicked')
         });
         Telegram.WebApp.MainButton.show();
 

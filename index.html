@@ -51,11 +51,11 @@
         Telegram.WebApp.MainButton.setParams({
             text: 'Show My QR code'
         });
-
         Telegram.WebApp.MainButton.onClick(function () {
             Telegram.WebApp.showAlert('Main Button was clicked')
         });
         Telegram.WebApp.MainButton.show();
+
 
         // Function to call showPopup API
         function showPopup() {
@@ -91,7 +91,7 @@
             expandEl.innerText = 'Is Expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false');
         }
 
-        Telegram.WebApp.setHeaderColor('secondary_bg_color');
+        Telegram.WebApp.setHeaderColor('danger_bg_color');
 
         setViewportData();
         Telegram.WebApp.onEvent('viewportChanged', setViewportData);

@@ -100,6 +100,22 @@
             document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
         });
 
+        // Initialize the Telegram Web App API
+        const tg = window.Telegram.WebApp;
+
+        tg.ready(() => {
+            // Request user location when button is clicked or another event triggers it
+            tg.requestLocation({
+                success: (location) => {
+                    console.log("User location:", location);
+                    // location.latitude and location.longitude will be available
+                },
+                error: (err) => {
+                    console.error("Failed to get location:", err);
+                },
+            });
+        });
+
     </script>
 
     <!-- Eruda is console for mobile browsers -->

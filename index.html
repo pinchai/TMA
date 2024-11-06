@@ -47,30 +47,50 @@
             document.documentElement.className = Telegram.WebApp.colorScheme;
         });
 
-        // Show main button
-        Telegram.WebApp.MainButton.setParams({
+        // // Show main button
+        // Telegram.WebApp.MainButton.setParams({
+        //     text: 'Show My QR code'
+        // });
+        // Telegram.WebApp.MainButton.onClick(function () {
+        //     Telegram.WebApp.showAlert('Main Button was clicked')
+        // });
+        // Telegram.WebApp.MainButton.show();
+        // Initialize the Telegram WebApp API
+        const tg = window.Telegram.WebApp;
+
+        // Set up the main button with custom text
+        tg.MainButton.setParams({
             text: 'Show My QR code'
         });
-        Telegram.WebApp.MainButton.onClick(function () {
-            const tg = window.Telegram.WebApp;
-            tg.ready(() => {
-                // Request user location when button is clicked or another event triggers it
-                tg.requestLocation({
-                    success: (location) => {
-                        // console.log("User location:", location);
-                        Telegram.WebApp.showAlert(location)
-                        // location.latitude and location.longitude will be available
-                    },
-                    error: (err) => {
-                        Telegram.WebApp.showAlert(err)
-                        // console.error("Failed to get location:", err);
-                    },
-                });
-            });
 
-            // Telegram.WebApp.showAlert('Main Button was clicked')
+        // Define the function to run when the main button is clicked
+        tg.MainButton.onClick(function () {
+            // Check if the image already exists, to prevent duplicates
+            let qrCode = document.getElementById('qr-code-image');
+            if (!qrCode) {
+                // Create an image element
+                qrCode = document.createElement('img');
+                qrCode.id = 'qr-code-image';
+
+                // Set the source to your QR code image URL or base64 data
+                qrCode.src = 'https://example.com/path-to-your-qr-code.png'; // Replace with your QR code URL
+
+                // Optionally, set size or other attributes
+                qrCode.style.width = '200px';
+                qrCode.style.height = '200px';
+
+                // Append the image to the body or a specific container
+                document.body.appendChild(qrCode);
+            } else {
+                // Toggle visibility if already present
+                qrCode.style.display = qrCode.style.display === 'none' ? 'block' : 'none';
+            }
         });
-        Telegram.WebApp.MainButton.show();
+
+        // Show the main button
+        tg.MainButton.show();
+
+
 
 
         // Function to call showPopup API
@@ -114,19 +134,6 @@
 
         Telegram.WebApp.onEvent('themeChanged', function() {
             document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
-        });
-
-        tg.ready(() => {
-            // Request user location when button is clicked or another event triggers it
-            tg.requestLocation({
-                success: (location) => {
-                    console.log("User location:", location);
-                    // location.latitude and location.longitude will be available
-                },
-                error: (err) => {
-                    console.error("Failed to get location:", err);
-                },
-            });
         });
 
     </script>

@@ -39,7 +39,7 @@
         </ul>
 
         <h1>Buttons</h1>
-        <button @click="testVue">Vue buttom 1</button>
+        <button @click="testVue">Vue buttom</button>
         <button onclick="Telegram.WebApp.expand();">Expand Webview</button>
         <button onclick="toggleMainButton();">Toggle Main Button</button>
     </main>
@@ -54,7 +54,8 @@
         createApp({
             data() {
                 return {
-                    message: 'Hello Vue!'
+                    message: 'Hello Vue!',
+                    userData: {}
                 }
             },
             mounted() {
@@ -63,6 +64,7 @@
                 Telegram.WebApp.ready();
                 // Access user info
                 const user = Telegram.WebApp.initDataUnsafe?.user;
+                this.userData = user;
                 if (user) {
                     document.getElementById('username').innerText = user.id;
                     document.getElementById('username').innerText = user.username;
@@ -73,7 +75,7 @@
             },
             methods: {
                 testVue() {
-                    console.log('Vue 3 is ready!')
+                    console.log(this.userData);
                 }
             }
         }).mount('#app')

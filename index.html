@@ -40,6 +40,9 @@
 
         <h1>Buttons</h1>
         <button @click="testVue">Vue buttom</button>
+        <button @click="openPopup">Vue popup</button>
+        <br>
+
         <button onclick="Telegram.WebApp.expand();">Expand Webview</button>
         <button onclick="toggleMainButton();">Toggle Main Button</button>
     </main>
@@ -76,6 +79,9 @@
             methods: {
                 testVue() {
                     console.log(this.userData);
+                },
+                openPopup() {
+                    Telegram.WebApp.showPopup('Hello World!');
                 }
             }
         }).mount('#app')

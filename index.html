@@ -10,6 +10,13 @@
 
 <body>
     <main>
+        <center>
+            <h3>User Information</h3>
+            <h4>Username: <span id="username"></span></h4>
+            <h4>First Name: <span id="first-name"></span></h4>
+            <h4>Last Name: <span id="last-name"></span></h4>
+
+        </center>
         <div align="center">
             <a href="https://ton.org/"><img width="48" src="./assets/tapps.png" alt="logo of telegram web apps"></a>
         </div>
@@ -43,14 +50,10 @@
         Telegram.WebApp.ready();
         // Access user info
         const user = Telegram.WebApp.initDataUnsafe?.user;
-
         if (user) {
-            console.log("User ID:", user.id);
-            console.log("Username:", user.username);
-            console.log("First Name:", user.first_name);
-            console.log("Last Name:", user.last_name);
-        } else {
-            console.error("No user information available.");
+            document.getElementById('username').innerText = user.username;
+            document.getElementById('first-name').innerText = user.first_name;
+            document.getElementById('last-name').innerText = user.last_name;
         }
 
         // Event occurs whenever theme settings are changed in the user's Telegram app (including switching to night mode).
@@ -71,8 +74,8 @@
 
         // Set up the main button with custom text
         tg.MainButton.setParams({
-            // text: 'Show My QR code'
-            text: ''+user.username
+            text: 'Show My QR code'
+            // text: ''+user.username
         });
 
         // Define the function to run when the main button is clicked

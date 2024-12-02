@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <main>
+    <main id="app">
         <center>
             <h3>User Information</h3>
             <h4>Username: <span id="username"></span></h4>
@@ -39,6 +39,7 @@
         </ul>
 
         <h1>Buttons</h1>
+        <button @click="toggleMainButton();">Vue buttom</button>
         <button onclick="Telegram.WebApp.expand();">Expand Webview</button>
         <button onclick="toggleMainButton();">Toggle Main Button</button>
     </main>
@@ -46,7 +47,22 @@
     <div id="viewport-params-size"></div>
     <div id="viewport-params-expand"></div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    message: 'Hello Vue!'
+                }
+            },
+            mounted() {
+                console.log('Vue 3 is ready!')
+            }
+        }).mount('#app')
+
+
         // Init TWA
         Telegram.WebApp.ready();
         // Access user info

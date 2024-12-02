@@ -73,7 +73,7 @@
                     document.getElementById('username').innerText = user.username;
                     document.getElementById('first-name').innerText = user.first_name;
                     document.getElementById('last-name').innerText = user.last_name;
-                    document.getElementById('all').innerText = JSON.stringify(user);
+                    //document.getElementById('all').innerText = JSON.stringify(user);
                 }
             },
             methods: {
@@ -81,7 +81,18 @@
                     console.log(this.userData);
                 },
                 openPopup() {
-                    Telegram.WebApp.showPopup('Hello World!');
+                    Telegram.WebApp.showPopup({
+                        title: 'Title',
+                        message: 'Some message',
+                        buttons: [
+                            {id: 'link', type: 'default', text: 'Open ton.org'},
+                            {type: 'cancel'},
+                        ]
+                    }, function(btn) {
+                        if (btn === 'link') {
+                            Telegram.WebApp.openLink('https://ton.org/');
+                        }
+                    });
                 }
             }
         }).mount('#app')

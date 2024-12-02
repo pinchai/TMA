@@ -15,6 +15,7 @@
             <h4>Username: <span id="username"></span></h4>
             <h4>First Name: <span id="first-name"></span></h4>
             <h4>Last Name: <span id="last-name"></span></h4>
+            <h4>All: <span id="all"></span></h4>
 
         </center>
         <div align="center">
@@ -51,9 +52,11 @@
         // Access user info
         const user = Telegram.WebApp.initDataUnsafe?.user;
         if (user) {
+            document.getElementById('username').innerText = user.id;
             document.getElementById('username').innerText = user.username;
             document.getElementById('first-name').innerText = user.first_name;
             document.getElementById('last-name').innerText = user.last_name;
+            document.getElementById('all').innerText = JSON.stringify(user);
         }
 
         // Event occurs whenever theme settings are changed in the user's Telegram app (including switching to night mode).
@@ -104,9 +107,6 @@
 
         // Show the main button
         tg.MainButton.show();
-
-
-
 
         // Function to call showPopup API
         function showPopup() {

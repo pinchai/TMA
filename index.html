@@ -39,7 +39,7 @@
         </ul>
 
         <h1>Buttons</h1>
-        <button @click="toggleMainButtonVue()">Vue buttom</button>
+        <button @click="testVue">Vue buttom 1</button>
         <button onclick="Telegram.WebApp.expand();">Expand Webview</button>
         <button onclick="toggleMainButton();">Toggle Main Button</button>
     </main>
@@ -59,26 +59,24 @@
             },
             mounted() {
                 console.log('Vue 3 is ready!')
+                // Init TWA
+                Telegram.WebApp.ready();
+                // Access user info
+                const user = Telegram.WebApp.initDataUnsafe?.user;
+                if (user) {
+                    document.getElementById('username').innerText = user.id;
+                    document.getElementById('username').innerText = user.username;
+                    document.getElementById('first-name').innerText = user.first_name;
+                    document.getElementById('last-name').innerText = user.last_name;
+                    document.getElementById('all').innerText = JSON.stringify(user);
+                }
             },
             methods: {
-                toggleMainButtonVue() {
-                    Telegram.WebApp.MainButton.toggle();
+                testVue() {
+                    console.log('Vue 3 is ready!')
                 }
             }
         }).mount('#app')
-
-
-        // Init TWA
-        Telegram.WebApp.ready();
-        // Access user info
-        const user = Telegram.WebApp.initDataUnsafe?.user;
-        if (user) {
-            document.getElementById('username').innerText = user.id;
-            document.getElementById('username').innerText = user.username;
-            document.getElementById('first-name').innerText = user.first_name;
-            document.getElementById('last-name').innerText = user.last_name;
-            document.getElementById('all').innerText = JSON.stringify(user);
-        }
 
         // Event occurs whenever theme settings are changed in the user's Telegram app (including switching to night mode).
         Telegram.WebApp.onEvent('themeChanged', function() {

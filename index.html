@@ -16,6 +16,7 @@
             <h4>First Name: <span id="first-name"></span></h4>
             <h4>Last Name: <span id="last-name"></span></h4>
             <h4>All: <span id="all"></span></h4>
+            <img :src="user_profile">
 
         </center>
         <div align="center">
@@ -58,6 +59,7 @@
         createApp({
             data() {
                 return {
+                    user_profile: '',
                     message: 'Hello Vue!',
                     userData: {}
                 }
@@ -75,6 +77,7 @@
                     document.getElementById('first-name').innerText = user.first_name;
                     document.getElementById('last-name').innerText = user.last_name;
                     //document.getElementById('all').innerText = JSON.stringify(user);
+                    this.user_profile = user.photo_url;
                 }
             },
             methods: {

@@ -41,6 +41,7 @@
         <h1>Buttons</h1>
         <button @click="testVue">Vue buttom</button>
         <button @click="openPopup">Vue popup</button>
+        <button @click="haptic">Haptic</button>
         <br>
 
         <button onclick="Telegram.WebApp.expand();">Expand Webview</button>
@@ -93,6 +94,10 @@
                             Telegram.WebApp.openLink('https://ton.org/');
                         }
                     });
+                },
+                haptic() {
+                    // Telegram.WebApp.haptic();
+                    Telegram.WebApp.HapticFeedback.notificationOccurred("error")
                 }
             }
         }).mount('#app')

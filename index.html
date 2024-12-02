@@ -39,7 +39,7 @@
         </ul>
 
         <h1>Buttons</h1>
-        <button @click="toggleMainButton();">Vue buttom</button>
+        <button @click="toggleMainButtonVue()">Vue buttom</button>
         <button onclick="Telegram.WebApp.expand();">Expand Webview</button>
         <button onclick="toggleMainButton();">Toggle Main Button</button>
     </main>
@@ -59,6 +59,11 @@
             },
             mounted() {
                 console.log('Vue 3 is ready!')
+            },
+            methods: {
+                toggleMainButtonVue() {
+                    Telegram.WebApp.MainButton.toggle();
+                }
             }
         }).mount('#app')
 
